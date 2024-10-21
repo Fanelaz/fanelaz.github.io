@@ -4,7 +4,7 @@ body {
     background-color: #f5f5f5; /* Couleur de fond douce */
     margin: 0;
     padding: 20px;
-    box-sizing: border-box; /* S'assure que le padding ne dépasse pas l'écran */
+    box-sizing: border-box; /* Assure que le padding ne dépasse pas */
 }
 
 /* Réactivité pour tous les écrans */
@@ -107,7 +107,7 @@ button:hover {
 }
 
 /* Réglages pour le formulaire */
-input[type="text"], select, input[type="date"] {
+input[type="text"], select {
     width: calc(100% - 20px);
     padding: 12px;
     border: 1px solid #e1e1e1;
@@ -116,7 +116,7 @@ input[type="text"], select, input[type="date"] {
     transition: border-color 0.3s;
 }
 
-input[type="text"]:focus, select:focus, input[type="date"]:focus {
+input[type="text"]:focus, select:focus {
     border-color: #007bff; /* Bordure bleue au focus */
     outline: none;
 }
@@ -138,28 +138,80 @@ tr {
     font-weight: bold; /* Texte en gras pour le statut */
 }
 
-/* Style réactif pour les petits écrans */
+.order-details-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* Style pour le champ de date */
+input[type="date"] {
+    width: calc(100% - 20px); /* Largeur du champ de date */
+    padding: 12px; /* Padding pour le champ de date */
+    border: 1px solid #e1e1e1; /* Bordure gris clair */
+    border-radius: 5px; /* Coins arrondis */
+    margin-bottom: 15px; /* Espacement inférieur */
+    transition: border-color 0.3s; /* Transition douce pour le focus */
+}
+
+input[type="date"]:focus {
+    border-color: #007bff; /* Bordure bleue au focus */
+    outline: none; /* Enlever le contour par défaut */
+}
+
+/* Réactivité pour les petits écrans */
 @media (max-width: 768px) {
     table {
         font-size: 0.9em;
     }
 
-    th, td {
-        padding: 10px;
-    }
-
     button {
         padding: 8px 12px;
     }
+
+    th, td {
+        padding: 10px;
+    }
 }
 
-/* Style supplémentaire pour les très petits écrans */
+/* Adaptation des tableaux pour les très petits écrans */
 @media (max-width: 480px) {
-    table, th, td {
+    table {
         font-size: 0.8em;
     }
 
-    /* Réduire la taille des boutons sur très petits écrans */
+    /* Réorganisation en vue empilée pour mobile */
+    thead {
+        display: none;
+    }
+
+    tr {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    td {
+        display: block;
+        padding: 10px;
+        text-align: right;
+        border: none;
+        position: relative;
+    }
+
+    td::before {
+        content: attr(data-label); /* Utilise le contenu de l'attribut personnalisé pour afficher les titres des colonnes */
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
     button {
         padding: 6px 10px;
     }
