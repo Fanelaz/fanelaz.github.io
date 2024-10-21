@@ -4,6 +4,12 @@ body {
     background-color: #f5f5f5; /* Couleur de fond douce */
     margin: 0;
     padding: 20px;
+    box-sizing: border-box; /* Assure que le padding ne dépasse pas */
+}
+
+/* Réactivité pour tous les écrans */
+* {
+    box-sizing: border-box;
 }
 
 /* Style du tableau */
@@ -97,7 +103,7 @@ button:hover {
 }
 
 .tr-livree {
-    background-color: rgba(76, 175, 80, 0.2) ; /* Bleu clair */
+    background-color: rgba(76, 175, 80, 0.2); /* Bleu clair */
 }
 
 /* Réglages pour le formulaire */
@@ -113,11 +119,6 @@ input[type="text"], select {
 input[type="text"]:focus, select:focus {
     border-color: #007bff; /* Bordure bleue au focus */
     outline: none;
-}
-
-/* Style des conteneurs de produits */
-#product-container {
-    margin-bottom: 20px;
 }
 
 /* Animation des lignes de tableau */
@@ -149,7 +150,6 @@ tr {
     z-index: 1000;
 }
 
-
 /* Style pour le champ de date */
 input[type="date"] {
     width: calc(100% - 20px); /* Largeur du champ de date */
@@ -160,12 +160,12 @@ input[type="date"] {
     transition: border-color 0.3s; /* Transition douce pour le focus */
 }
 
-/* Style pour le focus sur le champ de date */
 input[type="date"]:focus {
     border-color: #007bff; /* Bordure bleue au focus */
     outline: none; /* Enlever le contour par défaut */
 }
-/* Réactivité */
+
+/* Réactivité pour les petits écrans */
 @media (max-width: 768px) {
     table {
         font-size: 0.9em;
@@ -177,5 +177,42 @@ input[type="date"]:focus {
 
     th, td {
         padding: 10px;
+    }
+}
+
+/* Adaptation des tableaux pour les très petits écrans */
+@media (max-width: 480px) {
+    table {
+        font-size: 0.8em;
+    }
+
+    /* Réorganisation en vue empilée pour mobile */
+    thead {
+        display: none;
+    }
+
+    tr {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    td {
+        display: block;
+        padding: 10px;
+        text-align: right;
+        border: none;
+        position: relative;
+    }
+
+    td::before {
+        content: attr(data-label); /* Utilise le contenu de l'attribut personnalisé pour afficher les titres des colonnes */
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    button {
+        padding: 6px 10px;
     }
 }
